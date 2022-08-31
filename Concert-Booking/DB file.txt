@@ -1,0 +1,53 @@
+// Sign_Up table
+create table Sign_Up(
+     CustomerId int PRIMARY KEY AUTO_INCREMENT,
+     Name varchar(20),
+     Email varchar(30),
+     Password varchar(12));
+     
+
+//Concert_Details table
+create table Concert_Details(
+     Concert_Id int AUTO_INCREMENT,
+      
+     Name varchar(20),
+     City varchar(20),
+     Time time,
+     Date date,
+     Max_Registrations int,
+     Age int,
+     About varchar(800),
+     CONSTRAINT PK_Person PRIMARY KEY (Concert_Id)
+     );
+      
+
+//Artist_Details
+Create table Artist_Details(
+    Concert_ID INT NOT NULL,
+    Artist_Name  varchar(20),
+    Artist_age int,
+    CONSTRAINT Artist_Artist_fk FOREIGN KEY (Concert_ID) REFERENCES Concert_Details(Concert_Id));
+
+//Host_Details
+Create table Host_Details(
+    Concert_ID INT NOT NULL,
+    Host_Name  varchar(20),
+    Phone_No varchar(20),
+    CONSTRAINT Host_fk FOREIGN KEY (Concert_ID) REFERENCES Concert_Details(Concert_Id));
+
+
+create table Payments(
+     Payment_ID int PRIMARY KEY AUTO_INCREMENT,
+     CustomerId int ,
+     Concert_Id int,
+     No_Of_Tkts int,
+     CONSTRAINT Cust_Fk FOREIGN KEY(CustomerId) REFERENCES Sign_Up(CustomerId),
+     CONSTRAINT Con_Fk FOREIGN KEY(Concert_Id) REFERENCES Concert_Details(Concert_Id)
+     
+);
+
+
+
+
+
+
